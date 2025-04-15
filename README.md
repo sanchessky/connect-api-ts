@@ -1,4 +1,4 @@
-# API-TS
+# Conexão do FrontEnd API-TS
 ## Criando uma API com Node.js, Express e MySQL
 
 ### Olá! Eu sou Thiago Sanches 😐,  sou iniciante na área de T.I 💻
