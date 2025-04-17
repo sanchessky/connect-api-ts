@@ -1,3 +1,22 @@
+function apagar(id) {
+    if (confirm("você deseja realmente apagar esse usuário ?") == 1) {
+        fetch(`http://127.0.0.1:3000/api/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            }
+        })
+        .then((res)=>res.json())
+        .then((dados)=>{
+            alert(dados);
+            document.location.reload();
+        })
+        .catch((error)=>console.error(error))
+    }
+}
+
+
 //função para inserir img e aparecer o botão junto com o fetch para puzar as informações do banco de dados
 
 function carregar() {
@@ -14,7 +33,7 @@ function carregar() {
             <h5 class="card-title">${rs.name}</h5>
             <p class="card-text">${rs.email}</p>
             <a href="#" class="btn btn-primary" id="atualizar" >Atualizar</a>
-            <a href="#" class="btn btn-danger" id="deletar" >Deletar</a>
+            <a href="#" class="btn btn-danger" id="deletar" onclick="apagar(${rs.id})">Deletar</a>
          </div>
 </div>
             `;
@@ -28,23 +47,24 @@ const btnCadastrar = document.querySelector("#btnCadastrar");
 btnCadastrar.onclick = () => {
     if (confirm("você deseja cadastrar este cliente ?") == 1) {
         fetch("http://127.0.0.1:3000/api/create", {
-            method:"POST",
-            headers:{
-                "accept":"application/json",
-                "content-type":"application/json"
+            method: "POST",
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
             },
-            body:JSON.stringify({
-                name:document.querySelector("#txtnome").value,
-                email:document.querySelector("#txtemail").value
+            body: JSON.stringify({
+                name: document.querySelector("#txtnome").value,
+                email: document.querySelector("#txtemail").value
             })
         })
-        .then((res)=>res.json())
-        .then((dados)=>{
-            alert(dados);
-            document.location.reload();
-        })
-        .catch((erro)=>{
-            console.error(erro)
-        })
+            .then((res) => res.json())
+            .then((dados) => {
+                alert(dados);
+                document.location.reload();
+            })
+            .catch((erro) => {
+                console.error(erro)
+            })
     }
 }
+
