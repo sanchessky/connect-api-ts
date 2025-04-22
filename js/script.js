@@ -1,3 +1,11 @@
+//Função ATUALIZAR
+function atualizar(id,name,email) {
+    alert(`id:${id} | name:${id} |email:${email}`)
+}
+
+
+
+//Função para apagar
 function apagar(id) {
     if (confirm("você deseja realmente apagar esse usuário ?") == 1) {
         fetch(`http://127.0.0.1:3000/api/delete/${id}`, {
@@ -16,7 +24,6 @@ function apagar(id) {
     }
 }
 
-
 //função para inserir img e aparecer o botão junto com o fetch para puzar as informações do banco de dados
 
 function carregar() {
@@ -32,8 +39,8 @@ function carregar() {
         <div class="card-body">
             <h5 class="card-title">${rs.name}</h5>
             <p class="card-text">${rs.email}</p>
-            <a href="#" class="btn btn-primary" id="atualizar" >Atualizar</a>
-            <a href="#" class="btn btn-danger" id="deletar" onclick="apagar(${rs.id})">Deletar</a>
+            <a href="#" class="btn btn-primary" id="atualizar" onclick=atualizar(${rs.id},'${rs.name}','${rs.email}')>Atualizar</a>
+            <a href="#" class="btn btn-danger" id="deletar" onclick=apagar(${rs.id})>Deletar</a>
          </div>
 </div>
             `;
