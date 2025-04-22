@@ -3,7 +3,7 @@ function atualizar(id, name, email) {
     if (confirm(`Você realmente deseja atualizar o usuário ${name}`) == 1) {
         let frm_atualizar = `
         
-        <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
+    <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -35,7 +35,9 @@ function atualizar(id, name, email) {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>     `;
+
+    document.getElementById("upModal").innerHTML = frm_atualizar;
     }
 }
 
