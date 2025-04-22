@@ -1,4 +1,7 @@
 //Função ATUALIZAR
+function efetuarAtualizacao(){
+    alert("Olá word")
+}
 function atualizar(id, name, email) {
     if (confirm(`Você realmente deseja atualizar o usuário ${name}`) == 1) {
         let frm_atualizar = `
@@ -17,12 +20,12 @@ function atualizar(id, name, email) {
                         <input type="text" class="form-control" id="txtId" value='${id}' disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="txtnome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="txtnome" placeholder="Nome" value='${name}'>
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome" value='${name}'>
                     </div>
                     <div class="mb-3">
-                        <label for="txtemail" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="txtemail"
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email"
                             placeholder="E-mail"value='${email}'>
                     </div>
                     <!--Fim do Formulario Atualizar-->
@@ -30,12 +33,14 @@ function atualizar(id, name, email) {
                 <div class="modal-footer">
                     <!--Inicio botão Atualizar-->
                     <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnAtualizar">Atualizar</button>
+                    <button type="button" class="btn btn-primary" id="btnAtualizar" onclick="efetuarAtualizacao()" >Atualizar</button>
                     <!--Fim botão Atualizar-->
                 </div>
             </div>
         </div>
-    </div>     `;
+    </div>     
+    
+    `;
 
     document.getElementById("upModal").innerHTML = frm_atualizar;
     }
