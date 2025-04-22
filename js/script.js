@@ -1,6 +1,42 @@
 //Função ATUALIZAR
-function atualizar(id,name,email) {
-    alert(`id:${id} | name:${id} |email:${email}`)
+function atualizar(id, name, email) {
+    if (confirm(`Você realmente deseja atualizar o usuário ${name}`) == 1) {
+        let frm_atualizar = `
+        
+        <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="atualizarModalLabel">Atualizar Usuário</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Inicio do Formulario Atualizar-->
+                    <div class="mb-3">
+                        <label for="txtId" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="txtId" value='${id}' disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtnome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="txtnome" placeholder="Nome" value='${name}'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtemail" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="txtemail"
+                            placeholder="E-mail"value='${email}'>
+                    </div>
+                    <!--Fim do Formulario Atualizar-->
+                </div>
+                <div class="modal-footer">
+                    <!--Inicio botão Atualizar-->
+                    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="btnAtualizar">Atualizar</button>
+                    <!--Fim botão Atualizar-->
+                </div>
+            </div>
+        </div>
+    </div>`
+    }
 }
 
 
@@ -15,12 +51,12 @@ function apagar(id) {
                 "content-type": "application/json"
             }
         })
-        .then((res)=>res.json())
-        .then((dados)=>{
-            alert(dados);
-            document.location.reload();
-        })
-        .catch((error)=>console.error(error))
+            .then((res) => res.json())
+            .then((dados) => {
+                alert(dados);
+                document.location.reload();
+            })
+            .catch((error) => console.error(error))
     }
 }
 
