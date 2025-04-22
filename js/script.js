@@ -1,48 +1,75 @@
 //Função ATUALIZAR
-function efetuarAtualizacao(){
-    alert("Olá word")
+function efetuarAtualizacao() {
+    const nome = document.getElementById("nome");
+    const email = document.getElementById("email");
+    const id = document.getElementById("txtId");
+
+    nome.value = n
+    email.value = e
 }
 function atualizar(id, name, email) {
     if (confirm(`Você realmente deseja atualizar o usuário ${name}`) == 1) {
-        let frm_atualizar = `
-        
-    <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="atualizarModalLabel">Atualizar Usuário</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!--Inicio do Formulario Atualizar-->
-                    <div class="mb-3">
-                        <label for="txtId" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="txtId" value='${id}' disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Nome" value='${name}'>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email"
-                            placeholder="E-mail"value='${email}'>
-                    </div>
-                    <!--Fim do Formulario Atualizar-->
-                </div>
-                <div class="modal-footer">
-                    <!--Inicio botão Atualizar-->
-                    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnAtualizar" onclick="efetuarAtualizacao()" >Atualizar</button>
-                    <!--Fim botão Atualizar-->
-                </div>
-            </div>
-        </div>
-    </div>     
-    
-    `;
 
-    document.getElementById("upModal").innerHTML = frm_atualizar;
+        n = prompt(`Atualizar o nome: ${name} para`, name)
+        e = prompt(`Atualizar o email: ${email} para`, email)
+
+        fetch("http://127.0.0.1:3000/api/update/" + id, {
+            method: "PUT",
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                name: n,
+                email: e
+            })
+        })
+            .then((res) = z > res.json())
+            .then((dados) => {
+                alert("Dados Atualizados");
+                document.location.reload();
+            }).catch((e) => console.error(e))
+
+        //REALIZAR TESTE COM A LET
+        /*       let frm_atualizar = `
+               
+           <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="atualizarModalLabel">Atualizar Usuário</h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                       <div class="modal-body">
+                           <!--Inicio do Formulario Atualizar-->
+                           <div class="mb-3">
+                               <label for="txtId" class="form-label">Id</label>
+                               <input type="text" class="form-control" id="txtId" value='${id}' disabled>
+                           </div>
+                           <div class="mb-3">
+                               <label for="nome" class="form-label">Nome</label>
+                               <input type="text" class="form-control" id="nome" placeholder="Nome" value='${name}'>
+                           </div>
+                           <div class="mb-3">
+                               <label for="email" class="form-label">E-mail</label>
+                               <input type="email" class="form-control" id="email"
+                                   placeholder="E-mail"value='${email}'>
+                           </div>
+                           <!--Fim do Formulario Atualizar-->
+                       </div>
+                       <div class="modal-footer">
+                           <!--Inicio botão Atualizar-->
+                           <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Fechar</button>
+                           <button type="button" class="btn btn-primary" id="btnAtualizar" onclick="efetuarAtualizacao()" >Atualizar</button>
+                           <!--Fim botão Atualizar-->
+                       </div>
+                   </div>
+               </div>
+           </div>     
+           
+           `;
+       */
+        document.getElementById("upModal").innerHTML = frm_atualizar;
     }
 }
 
